@@ -1,0 +1,23 @@
+{
+  "name": "wrike-test",
+  "version": "1.0.0",
+  "description": "test task for wrike",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/napastyuk/wrike-test.git"
+  },
+  "author": "Ilya Napastyuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/napastyuk/wrike-test/issues"
+  },
+  "homepage": "https://github.com/napastyuk/wrike-test#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  }
+}
