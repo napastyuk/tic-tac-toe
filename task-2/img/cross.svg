@@ -1,0 +1,15 @@
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="128" 
+    height="128">
+    <path 
+        d="M16,16L112,112"
+        stroke-width="16"
+        stroke="grey">
+    </path>
+    <path 
+        d="M112,16L16,112"
+        stroke-width="16"
+        stroke="grey">
+    </path>
+</svg>

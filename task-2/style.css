@@ -1,17 +1,16 @@
-#ticTacToe {
-  display: flex;
-  margin: auto;
-  background-color: LightSeaGreen;
-}
-
 #ticTacToe table {
   table-layout: fixed;
   border-collapse: collapse;
-  margin: 10px;
+  margin: 30px;
 }
 
 #ticTacToe td {
-  width: 48px;
-  height: 48px;
   border:6px solid grey;
+  width: 130px;
+  height: 130px;
+}
+
+#ticTacToe table object {
+  width: 130px;
+  height: 130px;
 }

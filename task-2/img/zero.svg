@@ -1,0 +1,11 @@
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="128" 
+    height="128">
+        <path 
+        d="M64,16A48,48 0 1,0 64,112A48,48 0 1,0 64,16" 
+        stroke-width="16"
+        stroke="grey"
+        fill="transparent">
+        </path>
+</svg>
