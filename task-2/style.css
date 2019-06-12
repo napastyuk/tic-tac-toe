@@ -6,8 +6,10 @@
 
 #ticTacToe td {
   border:6px solid grey;
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 140px;
+  vertical-align: middle;
+  text-align: center;
 }
 
 #ticTacToe table object {
