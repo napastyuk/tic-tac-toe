@@ -9,7 +9,7 @@
         pathToZeroImg: "img/zero.svg", //путь до картинки с ноликом
         pathToCrossImg: "img/cross.svg", //путь до картинки с крестиком
         rootElementId: "ticTacToe", //id тега контейнера в котором будет сгенерировано поле
-        firstPlayerFigure: 0 // за какие фигуры играет первый игрок. 0-за нолики 1-за крестики;
+        firstPlayerFigure: 1 // за какие фигуры играет первый игрок. 0-за нолики 1-за крестики;
     };
 
     var playModel = {
@@ -20,7 +20,9 @@
         //"1" - в ячейке крестик 
         field: [],
         currentFigure: config.firstPlayerFigure, //кто ходит прямо сейчас крестики ("1") или нолики ("0")
-        winnerFigure: null
+        isFieldFull: false,
+        winnerFigure: null, //кто выиграл null - ничья; 1 - крестики ; 0 - нолики
+        isGameFinish: false //флаг для выхода из игровго цикла
     }
 
     //часть отвечающая за View: генерация игрового поля
@@ -64,8 +66,8 @@
     }
 
     // часть отвечающая за Controller: добавление обработчиков кликов
-
     function showFigure(e) {
+        if (playModel.isGameFinish == true) return;
         let target = e.target;
         let elForShow;
         let clickPosition = target.dataset.cord.split(','); //массив с позицией клика        
@@ -82,6 +84,7 @@
     }
 
     function checkForWinner(xPos, yPos) {
+        if (playModel.isGameFinish == true) return;
         playModel.field[xPos][yPos] = playModel.currentFigure; //обновляем модель
 
         // по текущей позиции надо проверить горизонталь, вертикаль и диагональ в playModel.field
@@ -137,6 +140,16 @@
                 return config.winCellCount;
         };
 
+        function checkForDraw() {
+            let fieldRowCount = config.horizontalCellCount;
+            for (let i = 0; i <= config.horizontalCellCount; i++) {
+                if (playModel.field[0].includes(null) == true) return false
+                else fieldRowCount--;
+            }
+            if (fieldRowCount == 0) return true
+            return false;
+        }
+
         if (checkHorizontal() == config.winCellCount ||
             checkVertical() == config.winCellCount ||
             checkFirstDiagonal() == config.winCellCount ||
@@ -144,11 +157,17 @@
             playModel.winnerFigure = playModel.currentFigure;
             showResult();
         }
+        if (checkForDraw() == true) {
+            showResult();
+        }
     };
 
     function showResult() {
         let messageEl = document.createElement('p');
-        messageEl.setAttribute('class', 'winMessage')
+        messageEl.setAttribute('class', 'winMessage');
+        let reloadBtn = document.createElement('button');
+        reloadBtn.innerHTML = "Новая игра";
+        reloadBtn.onclick = function () { location.reload() };
         let winMessage;
         if (playModel.winnerFigure === null) winMessage = 'Ничья!'
         else if (playModel.winnerFigure === 1) winMessage = 'Крестики выиграли!'
@@ -156,6 +175,9 @@
         messageEl.innerHTML = winMessage;
         let targetElement = document.getElementById(config.rootElementId);
         targetElement.appendChild(messageEl);
+        targetElement.appendChild(reloadBtn);
+        playModel.isGameFinish = true; //ставим флаг для выхода 
+        return
     }
     init();
 })();
